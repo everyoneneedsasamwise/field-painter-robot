@@ -56,10 +56,10 @@ Total estimated cost: **~$472** (under $500 target)
 
 | Part | Qty | Unit Price | Total | Source | Notes |
 |------|-----|-----------|-------|--------|-------|
-| DeWalt 20V 5Ah Battery | 1 | $40 | $40 | Amazon / Home Depot | Or use existing if you have one |
-| DeWalt Battery Adapter Plate | 1 | $12 | $12 | Amazon | Wired output from battery |
-| LM2596 Buck Converter (adj) | 1 | $6 | $6 | Amazon | 20V → 12V for motors/pump |
-| LM2596 Buck Converter (5V) | 1 | $6 | $6 | Amazon | 20V → 5V for Pi |
+| Ryobi 18V ONE+ Battery | 1 | $0 | $0 | Already owned | Use existing 4Ah+ battery |
+| Ryobi 18V Battery Adapter | 1 | $12 | $12 | [Amazon](https://www.amazon.com/Adapter-Battery-terminals-Connector-Robotics/dp/B09GXBJMNF) | Wired output with switch + fuse |
+| LM2596 Buck Converter (adj) | 1 | $6 | $6 | [Amazon](https://www.amazon.com/LM2596-Converter-Module-Supply-1-23V-30V/dp/B008BHQFFI) | 18V → 12V for motors/pump |
+| LM2596 Buck Converter (5V) | 1 | $6 | $6 | Amazon | 18V → 5V for Pi |
 
 ### Power Budget
 | Component | Voltage | Current (max) | Watts |
@@ -68,10 +68,10 @@ Total estimated cost: **~$472** (under $500 target)
 | 2x Drive Motors | 12V | 2A total | 24W |
 | Paint Pump | 12V | 1.5A | 18W |
 | Solenoid Valve | 12V | 0.5A | 6W |
-| Sensors + UWB | 5V | 0.5A | 2.5W |
+| Sensors + GPS | 5V | 0.5A | 2.5W |
 | **Total** | | | **~65W** |
 
-DeWalt 20V 5Ah = 100Wh → **~1.5 hours runtime** at full draw. Enough for a soccer field.
+Ryobi 18V 4Ah = 72Wh → **~1 hour runtime** at full draw. Enough for a soccer field. Swap to a 6Ah for ~1.5 hours.
 
 ## 🛡️ Obstacle Avoidance — $8
 
@@ -104,11 +104,11 @@ DeWalt 20V 5Ah = 100Wh → **~1.5 hours runtime** at full draw. Enough for a soc
 | Brain & Navigation | $197 |
 | Drive System | $88 |
 | Paint System | $58 |
-| Power | $64 |
+| Power | $24 |
 | Obstacle Avoidance | $8 |
 | Frame & Hardware | $57 |
-| **TOTAL** | **$472** |
-| **Budget remaining** | **$28** |
+| **TOTAL** | **$383** |
+| **Budget remaining** | **$117** |
 
 ## Substitutions to Save Money
 
