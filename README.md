@@ -39,11 +39,13 @@ Commercial field painters cost $5,000–$30,000+. Manual line painting takes hou
 
 ## Navigation Strategy
 
-**Primary:** UWB (Ultra-Wideband) triangulation — 4 anchor modules on stakes at known field positions, 1 tag on robot. ~10-30cm accuracy.
+**Primary:** RTK GPS via Quectel LC29H modules — $60 rover + $60 base station = **1-2cm accuracy**. Or use free NTRIP/CORS correction services and skip the base station entirely.
 
-**Secondary:** Wheel encoders + IMU for dead reckoning between UWB fixes. Sensor fusion via Extended Kalman Filter.
+**Secondary:** Wheel encoders + IMU for dead reckoning between GPS fixes. Sensor fusion via Extended Kalman Filter.
 
-**No GPS required.** No subscriptions. No cellular. Works anywhere.
+**Inspired by:** [OpenMower](https://github.com/ClemensElflein/OpenMower), [ArduMower](https://wiki.ardumower.de), drone flight planners (Mission Planner, QGroundControl).
+
+**Flight Planner UI:** Satellite view of your field → overlay design template → tap corners → robot paints it. Like planning a drone mission, but for paint.
 
 ## Build Phases
 
@@ -61,9 +63,11 @@ Target: **Under $500**. See [BOM.md](docs/BOM.md) for full parts list.
 ## Docs
 
 - [BOM.md](docs/BOM.md) — Bill of Materials with sources and prices
+- [NAVIGATION.md](docs/NAVIGATION.md) — RTK GPS architecture, LC29H setup, coordinate system
 - [DESIGN.md](docs/DESIGN.md) — Detailed design decisions and tradeoffs
 - [WIRING.md](docs/WIRING.md) — Wiring diagrams and pinouts
 - [SOFTWARE.md](docs/SOFTWARE.md) — Software architecture and setup
+- [APP.md](docs/APP.md) — Mobile app design (flight planner UI)
 
 ## License
 

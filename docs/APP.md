@@ -1,8 +1,8 @@
-# FieldBot Mobile App
+# FieldBot Mobile App — "Flight Planner for Field Painting"
 
 ## Overview
 
-React Native app (iOS + Android) for designing field layouts, controlling the robot, and monitoring paint jobs in real-time.
+React Native app (iOS + Android) inspired by drone flight planners (Mission Planner, QGroundControl). Design field layouts on a satellite view, overlay templates, tap corners, and let the robot paint it autonomously.
 
 ## Screens
 
@@ -12,32 +12,42 @@ React Native app (iOS + Android) for designing field layouts, controlling the ro
 - Quick-start buttons for saved templates
 - Recent job history
 
-### 2. 🏟️ Field Designer
-- **Template Library:** Pre-built regulation fields
-  - Soccer (FIFA, MLS, youth sizes)
-  - Football (NCAA, NFL, high school)
-  - Lacrosse, field hockey, rugby
-  - Multi-sport overlay
+### 2. 🏟️ Field Designer (Flight Planner Style)
+- **Satellite Map View:**
+  - Opens to current GPS location (Mapbox/Google Maps tiles)
+  - Pinch to zoom, see the actual field from above
+  - Tap 4 corners of the real field → defines boundary
+  - Satellite imagery shows existing features (goals, fences, etc.)
+- **Template Overlay:**
+  - Pre-built regulation templates: Soccer (FIFA, MLS, youth), Football (NCAA, NFL, HS), Lacrosse, Field Hockey, Rugby
+  - Template overlays on satellite view — drag/rotate/scale to fit
+  - Semi-transparent so you can align with real-world features
+  - Multi-sport overlay (paint multiple sports on same field)
 - **Custom Designer:**
-  - Drop lines, arcs, circles, rectangles on a grid
-  - Import SVG files
-  - Set field dimensions (drag corners)
+  - Drop lines, arcs, circles, rectangles on the satellite view
+  - Import SVG files → auto-scale to field dimensions
   - Set line width per element
   - Mirror/repeat tools
 - **Logo Mode:**
   - Import image → trace to paintable paths
   - Center circle logos, end zone text, etc.
+- **Save & Share:**
+  - Save field layouts with GPS coordinates
+  - Share templates with other FieldBot users
+  - Re-use same layout next time (robot returns to exact GPS positions)
 
-### 3. 📡 Field Setup (Calibration)
+### 3. 📡 Field Setup (GPS Calibration)
 - Walk-through wizard:
-  1. "Place anchor A1 at first corner" → confirm
-  2. "Place anchor A2 at second corner" → confirm
-  3. Repeat for A3, A4
-  4. App calculates field dimensions from anchor distances
-  5. "Place robot at home position" → confirm origin
-- Live UWB signal strength for each anchor
-- Anchor battery status
-- Auto-detect field orientation
+  1. "Set up base station on tripod at field edge" → confirm signal
+  2. "Walk to corner 1 with phone/robot" → record GPS coord
+  3. "Walk to corner 2" → record GPS coord
+  4. Repeat for remaining corners
+  5. App auto-calculates field dimensions + orientation
+  6. "Place robot at home position" → confirm origin
+- Live RTK status: No Fix → GPS Fix → Float → **RTK Fix** ✅
+- Base station signal strength + satellite count
+- NTRIP connection status (if using CORS instead of own base)
+- Accuracy indicator: shows current precision in cm
 
 ### 4. 🎮 Live Control
 - **Map View:**

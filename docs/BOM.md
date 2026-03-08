@@ -1,20 +1,25 @@
 # Bill of Materials (BOM)
 
-Total estimated cost: **~$437** (with ~$63 buffer to $500)
+Total estimated cost: **~$472** (under $500 target)
 
-## 🧠 Brain & Navigation — $162
+## 🧠 Brain & Navigation — $197
 
 | Part | Qty | Unit Price | Total | Source | Notes |
 |------|-----|-----------|-------|--------|-------|
 | Raspberry Pi 4 (4GB) | 1 | $55 | $55 | [PiShop.us](https://www.pishop.us) / Amazon | Main controller |
-| Makerfabs UWB DWM3000 Module | 5 | $18 | $90 | [Makerfabs](https://www.makerfabs.com/uwb-dwm3000.html) | 4 anchors + 1 tag |
+| LC29H(DA) RTK Rover (Waveshare) | 1 | $60 | $60 | [Amazon](https://amzn.to/41861iV) | Centimeter GPS on robot |
+| LC29H(BS) RTK Base (Waveshare) | 1 | $60 | $60 | [Amazon](https://amzn.to/3X8NXnw) | Base station at field edge |
 | MPU-6050 IMU (GY-521) | 1 | $5 | $5 | Amazon | Gyro + accelerometer |
 | Hall Effect Wheel Encoder Kit | 2 | $6 | $12 | Amazon | Speed + distance tracking |
+| ESP32 DevKit (base controller) | 1 | $5 | $5 | Amazon | Streams RTCM corrections via WiFi |
 
-### UWB Anchor Setup
-- 4 anchors mounted on stakes/tripods at field corners
-- Each needs power: small USB battery pack or 3xAA holder ($5-10 extra)
-- Tag module mounts on robot, connects to Pi via SPI
+### RTK Base Station Setup
+- Mount LC29H(BS) + ESP32 on camera tripod at field edge
+- Power with USB battery bank
+- ESP32 streams RTCM corrections to robot Pi via WiFi
+- Alternative: Skip base station if CORS/NTRIP coverage is nearby (saves ~$65)
+- Check coverage: https://geodesy.noaa.gov/CORS_Map/
+- See [NAVIGATION.md](NAVIGATION.md) for full RTK architecture
 
 ## ⚡ Drive System — $88
 
@@ -96,14 +101,14 @@ DeWalt 20V 5Ah = 100Wh → **~1.5 hours runtime** at full draw. Enough for a soc
 
 | Category | Cost |
 |----------|------|
-| Brain & Navigation | $162 |
+| Brain & Navigation | $197 |
 | Drive System | $88 |
 | Paint System | $58 |
 | Power | $64 |
 | Obstacle Avoidance | $8 |
 | Frame & Hardware | $57 |
-| **TOTAL** | **$437** |
-| **Budget remaining** | **$63** |
+| **TOTAL** | **$472** |
+| **Budget remaining** | **$28** |
 
 ## Substitutions to Save Money
 
