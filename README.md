@@ -13,7 +13,8 @@ Commercial field painters cost $5,000–$30,000+. Manual line painting takes hou
 - **Custom designs** — load SVGs or field templates
 - **Obstacle avoidance** — ultrasonic sensors + bumper
 - **Phone control** — start/stop/monitor from your phone
-- **Under $500** total build cost
+- **Under $500** total build cost (base + paint), ~$530 with laser weeder module
+- **Laser weeding** — AI-powered weed detection + 445nm blue laser kills weeds without chemicals
 
 ## Architecture
 
@@ -68,6 +69,7 @@ Target: **Under $500**. See [BOM.md](docs/BOM.md) for full parts list.
 - [WIRING.md](docs/WIRING.md) — Wiring diagrams and pinouts
 - [SOFTWARE.md](docs/SOFTWARE.md) — Software architecture and setup
 - [APP.md](docs/APP.md) — Mobile app design (flight planner UI)
+- [WEEDER.md](docs/WEEDER.md) — Laser weeding module (lawn + garden)
 
 ## License
 
