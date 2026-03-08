@@ -1,44 +1,73 @@
-# FieldBot — Autonomous Line Painting Robot 🤖🎨
+# FieldBot — Modular Outdoor Robot Platform 🤖
 
-An open-source, GPS-free autonomous robot that paints lines on sports fields and custom designs. Built for under $500.
+One robot. Three swappable modules. Paint fields, laser weeds, spray fence lines.
 
-## Why?
+## The Problem
 
-Commercial field painters cost $5,000–$30,000+. Manual line painting takes hours and requires skill. FieldBot bridges the gap — affordable, automated, and accurate enough for regulation fields.
+| Task | Current Solution | Cost | Time |
+|------|-----------------|------|------|
+| Paint a soccer field | Manual push liner or $15K+ Turf Tank | $15,000+ | 2-3 hours |
+| Kill lawn weeds | Bend over and spray/pull, or chemicals everywhere | Your back | Endless |
+| Spray fence lines | Walk with a pump sprayer in the heat | Your weekend | Monthly |
 
-## Features (Planned)
+## The Solution
 
-- **Full soccer field coverage** (~100m x 64m)
-- **UWB positioning** — cm-level accuracy with 4 corner stakes (no GPS subscription)
-- **Custom designs** — load SVGs or field templates
-- **Obstacle avoidance** — ultrasonic sensors + bumper
-- **Phone control** — start/stop/monitor from your phone
-- **Under $500** total build cost (base + paint), ~$530 with laser weeder module
-- **Laser weeding** — AI-powered weed detection + 445nm blue laser kills weeds without chemicals
-
-## Architecture
+An open-source autonomous robot platform for **under $530** that handles all three.
 
 ```
-┌─────────────┐     ┌──────────────┐     ┌─────────────┐
-│  Phone App  │────▶│ Raspberry Pi │────▶│   Motors    │
-│  (Design +  │     │  (Brain)     │     │  (L298N)    │
-│   Control)  │     │              │     └─────────────┘
-└─────────────┘     │  - Path Plan │     ┌─────────────┐
-                    │  - Nav Fusion│────▶│ Paint Valve │
-┌─────────────┐     │  - PID Ctrl  │     │ (Solenoid)  │
-│ UWB Anchors │────▶│              │     └─────────────┘
-│ (4 corners) │     │              │
-└─────────────┘     └──────┬───────┘
-                           │
-              ┌────────────┼────────────┐
-              ▼            ▼            ▼
-        ┌──────────┐ ┌──────────┐ ┌──────────┐
-        │ Encoders │ │   IMU    │ │Ultrasonic│
-        │ (wheels) │ │(MPU-6050)│ │ (HC-SR04)│
-        └──────────┘ └──────────┘ └──────────┘
+┌─────────────────────────────────────────────┐
+│          FIELDBOT BASE PLATFORM             │
+│                                              │
+│  🛞 2WD Differential Drive (pneumatic)      │
+│  🛰️ RTK GPS (1-2cm accuracy)               │
+│  🧠 Raspberry Pi 4                          │
+│  🔋 Ryobi 18V Battery                      │
+│  📱 Phone App (flight planner style)        │
+│  🛡️ Obstacle Avoidance                     │
+│                                              │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐     │
+│  │🎨 PAINT │  │⚡ LASER │  │🧪 SPRAY │     │
+│  │ MODULE  │  │ MODULE  │  │ MODULE  │     │
+│  │         │  │         │  │         │     │
+│  │ Field   │  │ AI weed │  │ Blanket │     │
+│  │ lines   │  │ killing │  │ herbicide│    │
+│  │         │  │ (lawn + │  │ (fences, │    │
+│  │ Soccer  │  │ garden) │  │ gravel,  │    │
+│  │ Football│  │         │  │ rocks)   │    │
+│  │ Custom  │  │ No chems│  │          │    │
+│  └─────────┘  └─────────┘  └─────────┘     │
+│       $383        +$145        +$0*          │
+└─────────────────────────────────────────────┘
+        * Spray shares paint hardware
 ```
 
-## Navigation Strategy
+## Modules
+
+### 🎨 Paint Module — Autonomous Field Line Painter
+- Paint regulation soccer, football, lacrosse, or custom designs
+- Flight planner UI: overlay templates on satellite view of your field
+- Pump + solenoid + adjustable spray nozzle
+- Save field layouts with GPS coords — repaint the same lines perfectly every time
+- **Add-on cost: Included in base ($383)**
+
+### ⚡ Laser Module — AI-Powered Weed Killer
+- 5.5W 445nm blue laser destroys weed growing points
+- Pi Camera + Google Coral Edge TPU for real-time AI detection
+- **Lawn mode:** Identifies broadleaf weeds (goatheads, dandelions, crabgrass) in grass
+- **Garden mode:** Kills everything outside your mapped crop positions
+- No chemicals, no soil disturbance, surgical precision
+- ~20-40 weeds per minute
+- **Add-on cost: ~$145**
+
+### 🧪 Spray Module — Fence Line & Gravel Blanket Sprayer
+- Draw spray zones on satellite view (fence lines, gravel, rock beds)
+- Robot drives the path and blanket sprays everything
+- Use vinegar, organic herbicide, or commercial products
+- No AI needed — just kill everything in the zone
+- Shares pump/solenoid/tank with paint module (just swap liquid + nozzle)
+- **Add-on cost: $0** (uses paint hardware)
+
+## Navigation
 
 **Primary:** RTK GPS via Quectel LC29H modules — $60 rover + $60 base station = **1-2cm accuracy**. Or use free NTRIP/CORS correction services and skip the base station entirely.
 
@@ -53,13 +82,22 @@ Commercial field painters cost $5,000–$30,000+. Manual line painting takes hou
 | Phase | Description | Status |
 |-------|-------------|--------|
 | 1 | Rolling chassis (motors, wheels, frame, Pi) | 🔲 Not started |
-| 2 | Navigation (UWB, encoders, IMU, sensor fusion) | 🔲 Not started |
-| 3 | Paint system (pump, solenoid, tank) | 🔲 Not started |
+| 2 | Navigation (RTK GPS, encoders, IMU, sensor fusion) | 🔲 Not started |
+| 3 | Paint module (pump, solenoid, tank, nozzle) | 🔲 Not started |
 | 4 | Software (path planning, templates, phone app) | 🔲 Not started |
+| 5 | Laser weeding module (camera, AI, laser, pan/tilt) | 🔲 Not started |
+| 6 | Spray module (wider nozzle, zone planning in app) | 🔲 Not started |
 
 ## Budget
 
-Target: **Under $500**. See [BOM.md](docs/BOM.md) for full parts list.
+| Configuration | Cost |
+|--------------|------|
+| Base + Paint only | $383 |
+| Base + Paint + Spray | $383 (same hardware) |
+| Base + Paint + Laser | $528 |
+| **Base + All 3 Modules** | **$528** |
+
+See [BOM.md](docs/BOM.md) for full parts list with purchase links.
 
 ## Docs
 
@@ -70,6 +108,17 @@ Target: **Under $500**. See [BOM.md](docs/BOM.md) for full parts list.
 - [SOFTWARE.md](docs/SOFTWARE.md) — Software architecture and setup
 - [APP.md](docs/APP.md) — Mobile app design (flight planner UI)
 - [WEEDER.md](docs/WEEDER.md) — Laser weeding module (lawn + garden)
+- [SPRAY-MODULE.md](docs/SPRAY-MODULE.md) — Blanket spray module (fence lines, gravel, rocks)
+
+## Commercial Comparison
+
+| Product | What It Does | Price |
+|---------|-------------|-------|
+| Turf Tank | GPS field painting | $15,000-30,000 |
+| Tertill | Solar weeding robot | $400 (barely works) |
+| FarmBot | Garden CNC robot | $1,500-4,000 |
+| Carbon Robotics LaserWeeder | Laser weeding | $1,500,000 |
+| **FieldBot** | **All of the above** | **$383-528** |
 
 ## License
 
