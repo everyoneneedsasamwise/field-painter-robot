@@ -95,7 +95,8 @@ An open-source autonomous robot platform for **under $530** that handles all thr
 | Base + Paint only | $383 |
 | Base + Paint + Spray | $383 (same hardware) |
 | Base + Paint + Laser | $528 |
-| **Base + All 3 Modules** | **$528** |
+| Base + All Above + Trailer | $618 |
+| **Full platform (everything)** | **~$618** |
 
 See [BOM.md](docs/BOM.md) for full parts list with purchase links.
 
@@ -109,6 +110,7 @@ See [BOM.md](docs/BOM.md) for full parts list with purchase links.
 - [APP.md](docs/APP.md) — Mobile app design (flight planner UI)
 - [WEEDER.md](docs/WEEDER.md) — Laser weeding module (lawn + garden)
 - [SPRAY-MODULE.md](docs/SPRAY-MODULE.md) — Blanket spray module (fence lines, gravel, rocks)
+- [TRAILER.md](docs/TRAILER.md) — Tow-behind trailer (fertilizer, seed, ice melt, liquid spray bar)
 
 ## Commercial Comparison
 
